@@ -1,0 +1,127 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CURP_BETA
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string FechaNac= "00/00/0000", dia,mes,año;
+            string ApeM, ApeP, Nombre;
+            char r;
+            DateTime DATENam=DateTime.Now, FechaTem;
+            do
+            {
+                Console.WriteLine("¿Cual es tu nombre?");
+                Nombre = Console.ReadLine();
+
+                Console.WriteLine("¿Cual es tu apellido Paterno?");
+                ApeP = Console.ReadLine();
+
+                Console.WriteLine("¿Cual es tu apellido Materno?");
+                ApeM = Console.ReadLine();
+                //Bloque de codigo con validación de la fecha
+                bool Validacion;
+                do {
+
+                    Console.WriteLine("¿Cual es tu Fecha de Nacimiento? (dd/MM/yyyy)");
+                    FechaNac = Console.ReadLine();
+                    Validacion = DateTime.TryParse(FechaNac, out FechaTem);
+                    if(Validacion == true){
+                        DATENam = FechaTem;
+                    }
+                    else{
+                        Console.WriteLine("Error la Fecha introducida tiene un formato incorrecto");
+                        ///Thread.Sleep(500);
+                    }
+
+
+                } while (Validacion != true);
+
+                Console.WriteLine("Hola {0} {1} {2}", Nombre.ToUpper(), ApeP.ToUpper(), ApeM.ToUpper());
+
+                dia = DATENam.ToString("dd");
+                mes = DATENam.ToString("MM");
+                año = DATENam.ToString("yy");
+
+                string na, am, ap, num, letterA, letterB;
+
+                name(Nombre);
+                apellido(ApeP);
+                apm(ApeM);
+
+                
+
+                Console.WriteLine("TU RFC ES: {0} {1} {2} {3} {4} {5}",Nombre,ApeP,dia,mes,año);
+
+
+                Console.WriteLine("¿Desea continuar con otro RFC de otra persona? S/N");
+                r = char.ToUpper(char.Parse(Console.ReadLine()));
+
+                Console.Clear();
+
+            } while (r != 'N');
+            Console.WriteLine("Gracias por usar este programa!!!!");
+            Console.ReadKey();
+            ///Thread.Sleep(500);
+            Environment.Exit(0);
+            
+
+        }
+        public static void name(String x)
+        {
+            char nom;
+            nom = char.ToUpper(char.Parse(x.Substring(0, 1)));
+            Console.WriteLine("{0}", nom);
+        }
+
+        public static void apellido(String f)
+        {
+            int posicion = 0;
+            char l_ap_1, l_ap_2;
+           
+            l_ap_1 = char.ToUpper(char.Parse(f.Substring(0, 1)));
+            char vocal = 'A';
+            bool isfirst = true;
+            foreach (char letra in f)// VARIABLE letra ALMACENARA POR CADA VUELTA LA LETRA DEL AP
+            {
+                if (isfirst == true)
+                {
+                    isfirst = false;
+                    continue;
+                }
+
+                char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+
+                if (vowels.Contains(letra) == true)
+                {
+                    vocal = letra; //en la variable vocal dejar el resultado de la busqueda
+                    posicion = f.IndexOf(vocal);
+                    break;
+                }
+                else
+                {
+                    posicion = 1;
+                }
+            }
+
+            //Console.WriteLine(posicion);
+            l_ap_2 = char.ToUpper(char.Parse(f.Substring(posicion, 1)));
+
+            Console.WriteLine(l_ap_1 + "" + l_ap_2 +);
+
+        }
+        static void apm(string r)
+        {
+            char appm;
+            appm = char.ToUpper(char.Parse(r.Substring(0, 1)));
+            Console.WriteLine(appm);
+
+        }
+    }
+   
+}
