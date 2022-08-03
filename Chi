@@ -12,7 +12,7 @@ namespace proyectofinal
         {
 
             string FechaNac = "00/00/0000";
-
+            int d = 0;
             string ApeM, ApeP, Nombre, r;
           
             //DateTime DATENam;
@@ -32,7 +32,10 @@ namespace proyectofinal
                 DateTime DATENam = Convert.ToDateTime(FechaNac);
                 //DATENam = DateTime.Parse(Console.ReadLine());
                 apellido(Nombre, ApeP);
-          
+                apm(ApeM);
+                num(d);
+                
+
                 Console.WriteLine("¿Desea continuar con otro RFC de otra persona? SI/NO");
                 r = Console.ReadLine();
 
@@ -50,20 +53,20 @@ namespace proyectofinal
 		var character ="0123456789";
 		var Charsar = new char[1];
             var random = new Random();
-			///////////////
+			
             for (int i = 0; i < Charsarr.Length; i++)
             {
                 Charsarr[i] = characters[random.Next(characters.Length)];
             }
 		var resultString = new String(Charsarr);
 		
-			///////////////
+			
 			for (int i = 0; i < Charsar.Length; i++)
             {
                 Charsar[i] = character[random.Next(character.Length)];
             }
             var resultStrings = new String(Charsar);
-			//////////////
+			
             Console.WriteLine(resultString+resultStrings);
         }
        public static void apellido (String x, String f) 
@@ -100,7 +103,19 @@ namespace proyectofinal
             l_ap_2=char.ToUpper(char.Parse(f.Substring(posicion,1)));
 
             Console.WriteLine(l_ap_1 + "" + l_ap_2 + "" + nom);
-            
+        }
+         static void apm (string r)
+        {
+            char appm;
+           appm = char.ToUpper(char.Parse(r.Substring(0, 1)));
+            Console.WriteLine(appm);
+
+        }
+        static void num (int e)
+        {
+            Random nm = new Random();
+             e = nm.Next(11, 99);
+            Console.WriteLine(e);
         }
     }
 }
